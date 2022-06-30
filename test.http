@@ -1,8 +1,10 @@
-POST localhost:8080/photo
-Content-Type: application/json
+POST http://localhost:8080/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
 
-{
-  "id": "2",
-  "uri": "google.com",
-  "label": "computer"
-}
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="img.jpg"
+
+< ./img.jpg
+--WebAppBoundary--
+
+###

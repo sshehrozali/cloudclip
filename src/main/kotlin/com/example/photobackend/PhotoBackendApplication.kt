@@ -5,11 +5,16 @@ import com.google.cloud.spring.data.datastore.repository.DatastoreRepository
 import org.apache.catalina.core.ApplicationContext
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.core.io.ClassPathResource
+import org.springframework.core.io.Resource
 import org.springframework.core.io.WritableResource
 import org.springframework.data.annotation.Id
 import org.springframework.data.rest.core.annotation.RepositoryRestResource
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Repository
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestParam
@@ -53,6 +58,7 @@ class PhotoController (
 		) {
 
 	private val bucket = "gs://magical-photos-bucket"
+	// Method to upload photos to Cloud Bucket
 	@PostMapping("/upload")
 	fun upload(@RequestParam("file") file: MultipartFile) : Photo {
 		val id = UUID.randomUUID().toString()	// Randomly generate Filename for photo
@@ -65,8 +71,14 @@ class PhotoController (
 			input.copyTo(output)
 		}
 		}
-
 		// Return JSON payload after saving on Cloud Firestore
 		return photoRepository.save(Photo(id = id, uri = uri))
+	}
+
+	// Method to retrieve URI of photo
+	@GetMapping("/image/{id}")
+	fun get(@PathVariable id: String) : String {
+		val resource = ctx.getResource("/$bucket/$id")
+		return resource.toString()
 	}
 }
