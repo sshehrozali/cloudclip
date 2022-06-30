@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.multipart.MultipartFile
 
 @SpringBootApplication
 class PhotoBackendApplication
@@ -38,5 +40,13 @@ class HelloController (
 	@PostMapping("/photo")
 	fun create(@RequestBody photo: Photo) {
 		photoRepository.save(photo)	// Save JSON payload photo object
+	}
+}
+
+class PhotoController {
+
+	@PostMapping("/upload")
+	fun upload(@RequestParam("file") file: MultipartFile) : Photo {
+
 	}
 }
