@@ -1,1 +1,8 @@
-GET localhost:8080/
+POST localhost:8080/photo
+Content-Type: application/json
+
+{
+  "id": "1",
+  "uri": "google.com",
+  "label": "nature"
+}

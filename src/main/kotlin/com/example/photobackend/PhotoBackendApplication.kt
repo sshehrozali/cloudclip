@@ -1,7 +1,7 @@
 package com.example.photobackend
 
 import com.google.cloud.spring.data.datastore.core.mapping.Entity
-import com.google.cloud.spring.data.datastore.repository.DatastoreRepository
+import com.google.cloud.spring.data.firestore.FirestoreReactiveRepository
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.data.annotation.Id
@@ -26,7 +26,7 @@ data class Photo(
 )
 
 @Repository
-interface PhotoRepository : DatastoreRepository<Photo, String>
+interface PhotoRepository : FirestoreReactiveRepository<Photo>
 
 @RestController
 class HelloController (
@@ -37,6 +37,6 @@ class HelloController (
 
 	@PostMapping("/photo")
 	fun create(@RequestBody photo: Photo) {
-		photoRepository.save(photo)		// Save JSON payload photo object
+		photoRepository.save(photo)	// Save JSON payload photo object
 	}
 }
