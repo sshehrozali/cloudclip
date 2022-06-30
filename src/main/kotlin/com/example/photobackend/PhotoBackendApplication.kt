@@ -51,10 +51,10 @@ class HelloController (
 		photoRepository.save(photo)	// Save JSON payload photo object
 	}
 }
-
+@RestController
 class PhotoController (
 	private val photoRepository: PhotoRepository,
-	private val ctx: ApplicationContext
+	private val ctx: org.springframework.context.ApplicationContext
 		) {
 
 	private val bucket = "gs://magical-photos-bucket"
@@ -64,6 +64,8 @@ class PhotoController (
 		val id = UUID.randomUUID().toString()	// Randomly generate Filename for photo
 		val uri = "$bucket/$id"		// URI to access photo from bucket
 		val gcs = ctx.getResource(uri) as WritableResource		// Write as writeable resource
+
+		print("$id $uri")
 
 		// Upload file to Cloud Bucket
 		file.inputStream.use {
@@ -77,8 +79,12 @@ class PhotoController (
 
 	// Method to retrieve URI of photo
 	@GetMapping("/image/{id}")
-	fun get(@PathVariable id: String) : String {
+	fun get(@PathVariable id: String) : ResponseEntity<Resource> {
 		val resource = ctx.getResource("/$bucket/$id")
-		return resource.toString()
+		return if (resource.exists()) {
+			ResponseEntity.ok(resource)
+		} else {
+			ResponseEntity(HttpStatus.NOT_FOUND)
+		}
 	}
 }
