@@ -7,6 +7,8 @@ import org.springframework.boot.runApplication
 import org.springframework.data.annotation.Id
 import org.springframework.stereotype.Repository
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @SpringBootApplication
@@ -27,7 +29,14 @@ data class Photo(
 interface PhotoRepository : DatastoreRepository<Photo, String>
 
 @RestController
-class HelloController {
+class HelloController (
+	private val photoRepository: PhotoRepository
+		) {
 	@GetMapping("/")
 	fun hello() = "Hello! I am from Spring Boot Kotlin!"
+
+	@PostMapping("/photo")
+	fun create(@RequestBody photo: Photo) {
+		photoRepository.save(photo)		// Save JSON payload photo object
+	}
 }
