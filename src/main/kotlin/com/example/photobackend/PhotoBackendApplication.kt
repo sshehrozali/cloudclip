@@ -12,6 +12,12 @@ fun main(args: Array<String>) {
 	runApplication<PhotoBackendApplication>(*args)
 }
 
+data class Photo(
+	var id: String? = null,
+	var uri: String? = null,
+	var label: String? = null
+)
+
 @RestController
 class HelloController {
 	@GetMapping("/")
