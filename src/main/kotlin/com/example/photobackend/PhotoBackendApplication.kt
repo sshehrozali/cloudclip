@@ -1,7 +1,7 @@
 package com.example.photobackend
 
 import com.google.cloud.spring.data.datastore.core.mapping.Entity
-import com.google.cloud.spring.data.firestore.FirestoreReactiveRepository
+import com.google.cloud.spring.data.datastore.repository.DatastoreRepository
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.data.annotation.Id
@@ -26,7 +26,7 @@ data class Photo(
 )
 
 @Repository
-interface PhotoRepository : FirestoreReactiveRepository<Photo>
+interface PhotoRepository : DatastoreRepository<Photo, String>
 
 @RestController
 class HelloController (

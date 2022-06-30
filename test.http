@@ -2,7 +2,7 @@ POST localhost:8080/photo
 Content-Type: application/json
 
 {
-  "id": "1",
+  "id": "2",
   "uri": "google.com",
-  "label": "nature"
+  "label": "computer"
 }
