@@ -2,6 +2,7 @@ package com.example.photobackend
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @SpringBootApplication
@@ -13,5 +14,6 @@ fun main(args: Array<String>) {
 
 @RestController
 class HelloController {
+	@GetMapping("/")
 	fun hello() = "Hello! I am from Spring Boot Kotlin!"
 }
