@@ -27,4 +27,4 @@ _Content-Disposition: form-data; name="file"; filename="img.jpg"_
 * Cloud Source Repositories (Source repository)  
 * Cloud Build (for building .jar file using inline .yaml)  
 * Container Registry (for building container image DockerFile)  
-* CLoud Run (running service at endpoint)
+* Cloud Run (running service at endpoint)
