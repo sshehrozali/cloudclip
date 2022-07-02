@@ -84,7 +84,7 @@ class PhotoController (
 		val labels = response.labelAnnotationsList.take(5).map { it.description }.joinToString { "," }
 
 		// Return JSON payload after saving on Cloud Firestore
-		return photoRepository.save(Photo(id = id, uri = uri))
+		return photoRepository.save(Photo(id = id, uri = uri, label = labels))
 	}
 
 	// Method to retrieve URI of photo
