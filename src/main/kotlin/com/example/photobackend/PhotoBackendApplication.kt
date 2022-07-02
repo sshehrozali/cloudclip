@@ -2,6 +2,8 @@ package com.example.photobackend
 
 import com.google.cloud.spring.data.datastore.core.mapping.Entity
 import com.google.cloud.spring.data.datastore.repository.DatastoreRepository
+import com.google.cloud.spring.vision.CloudVisionTemplate
+import com.google.cloud.vision.v1.Feature
 import org.apache.catalina.core.ApplicationContext
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -54,7 +56,8 @@ class HelloController (
 @RestController
 class PhotoController (
 	private val photoRepository: PhotoRepository,
-	private val ctx: org.springframework.context.ApplicationContext
+	private val ctx: org.springframework.context.ApplicationContext,
+	private val visionTemplate: CloudVisionTemplate
 		) {
 
 	private val bucket = "gs://magical-photos-bucket"
@@ -73,6 +76,13 @@ class PhotoController (
 			input.copyTo(output)
 		}
 		}
+
+		// Analyze image using Cloud Vision API
+		val response = visionTemplate.analyzeImage(file.resource, Feature.Type.LABEL_DETECTION)
+		System.out.println(response)
+		// Get image labels
+		val labels = response.labelAnnotationsList.take(5).map { it.description }.joinToString { "," }
+
 		// Return JSON payload after saving on Cloud Firestore
 		return photoRepository.save(Photo(id = id, uri = uri))
 	}
