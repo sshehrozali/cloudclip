@@ -1,0 +1,9 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: Photo2Bucket
+#  cloud:
+#    gcp:
+#      datastore:
+#        project-id: YOUR_PROJECT_ID_HERE
