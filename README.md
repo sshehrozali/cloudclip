@@ -1,30 +1,8 @@
-**Technologies used:**
-* Spring Boot
-* Kotlin
-* Google Cloud
-* Maven
+### What's this?
+Photo-2-Bucket is an application that is designed to upload Photos/Images/Pictures instantly to **Google Cloud Storage Bucket** which is a Google Cloud service for **Object Storage** or as **BLOB** (Binary Large Object) such as Files/CSVs/Documents etc. use to upload/retrieve for transaction purposes or for your any specific needs.
 
-**AppEngine deployment:**  
-**app.yaml** - Specified instance properties and instance class type F4 supporting automatic scaling. Used Java 17 runtime environment.
+#### How it works?
+The application uses RESTful architecture to upload or retrieve Photo from Cloud.
+* **Uploading a Photo:** Make a _POST_ request to `HOST:8080/api/upload` with Image/Photo as _File_ attached with _Content-Type: multipart/form; boundary=WebAppBoundary_ and _Content-Disposition_ (check out _RESTClient.http_ to understand more about the request type). It will upload or save your Photo to Storage Bucket.
+* **Retrieving a Photo:** Make a _GET_ request to `HOST:8080/api/image/{id}` to retrieve a specific photo from Storage Bucket. The `id` passed in URI request parameter is the id of the photo you want to retrieve from Storage Bucket. The response returned is the Photo (retrieved by id) with a status code of 200 OK.
 
-**Google AI/ML:**  
-**Cloud Vision API** - for analyzing images and extracting image annotations labels and saving to Cloud Firestore collection by JSON payload
-
-**GET Request:**  
-`{  
-    id: image_filename_saved_on_bucket,  
-    uri: bucket_uri,  
-    label: image_annotations_analyzed_by_visionAPI  
-}
-`
-
-**POST Request:**  
-_Content-Type: multipart/form-data; boundary=WebAppBoundary_  
-_--WebAppBoundary_
-_Content-Disposition: form-data; name="file"; filename="img.jpg"_
-
-**Continuous Deployment Pipeline:**
-* Cloud Source Repositories (Source repository)  
-* Cloud Build (for building .jar file using inline .yaml)  
-* Container Registry (for building container image DockerFile)  
-* Cloud Run (running service at endpoint)
