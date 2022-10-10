@@ -1,4 +1,4 @@
-package com.example.photobackend
+package com.photo2bucket
 
 import com.google.cloud.spring.data.datastore.core.mapping.Entity
 import com.google.cloud.spring.data.datastore.repository.DatastoreRepository
