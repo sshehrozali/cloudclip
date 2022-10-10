@@ -13,13 +13,8 @@ import java.util.*
 @RestController
 @RequestMapping("/api/v1")
 class PhotoController(
-    private val photoRepository: PhotoRepository,
-    private val ctx: org.springframework.context.ApplicationContext,
-    private val visionTemplate: CloudVisionTemplate
+    private val photoService: PhotoService
 ) {
-    // Bucket name
-    private val bucket = "gs://magical-photos-bucket"
-
     // Method to retrieve a Photo
     @GetMapping("/image/{id}")
     fun get(@PathVariable id: String): ResponseEntity<Resource> {
