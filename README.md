@@ -27,4 +27,5 @@ The application uses RESTful architecture to upload or retrieve Photo from Cloud
 #### Deployment:
 The application supports two types of Deployment:
 * **App Engine (PaaS):** GAE is a Platform-as-a-Service offered by Google Cloud. The instance configuration can be declared explicitly in _app.yaml_ file under root folder which you can provide in argument when pushing your build to App Engine via gCloud shell. It automatically spins up the instance according to specified instance type declared and runtime environment. It also supports A/B versioning split testing by configuring Load Balancer for splitting the traffic to your A and B services.
+
 * **Cloud Run (Serverless):** Cloud Run is a fully-managed Server-less deployment option offered by Google Cloud if you want to speed up your deployment without any IaC. It also supports CI/CD deployment pipeline via Cloud Build by connecting to your Source Repository which triggers on every Push and build the deployable file according to language or also in a Docker container.
