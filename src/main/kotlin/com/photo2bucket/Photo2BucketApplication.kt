@@ -4,17 +4,14 @@ import com.google.cloud.spring.data.datastore.core.mapping.Entity
 import com.google.cloud.spring.data.datastore.repository.DatastoreRepository
 import com.google.cloud.spring.vision.CloudVisionTemplate
 import com.google.cloud.vision.v1.Feature
-import org.apache.catalina.core.ApplicationContext
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.Resource
 import org.springframework.core.io.WritableResource
 import org.springframework.data.annotation.Id
 import org.springframework.data.rest.core.annotation.RepositoryRestResource
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Repository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
