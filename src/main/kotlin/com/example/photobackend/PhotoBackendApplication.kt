@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
@@ -54,6 +55,7 @@ class HelloController (
 	}
 }
 @RestController
+@RequestMapping("/api/")
 class PhotoController (
 	private val photoRepository: PhotoRepository,
 	private val ctx: org.springframework.context.ApplicationContext,
@@ -62,7 +64,7 @@ class PhotoController (
 
 	private val bucket = "gs://magical-photos-bucket"
 	// Method to upload photos to Cloud Bucket
-	@PostMapping("/upload")
+	@PostMapping("upload")
 	fun upload(@RequestParam("file") file: MultipartFile) : Photo {
 		val id = UUID.randomUUID().toString()	// Randomly generate Filename for photo
 		val uri = "$bucket/$id"		// URI to access photo from bucket
