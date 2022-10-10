@@ -1,5 +1,20 @@
 ### What's this?
-Photo-2-Bucket is an application that is designed to upload Photos/Images/Pictures instantly to **Google Cloud Storage Bucket** which is a Google Cloud service for **Object Storage** or as **BLOB** (Binary Large Object) such as Files/CSVs/Documents etc. use to upload/retrieve for transaction purposes or for your any specific needs.
+Photo-2-Bucket is a Google Cloud platform powered service that makes uploading and retrieving photos for your apps a hassle-free approach. It comes with Google Cloud platform AI powered technology **Cloud Vision API** to perform Machine Learning based Image scanning for quick Object Detection and Fetching Image attributes to meet your any kind of Business purpose. Try it now!
+
+#### Features:
+The application is packed with following features:
+
+* **Storage Bucket**
+GCP Storage Bucket is a Google Cloud service that lets your dispose your Objects or **BLOBs** (Binary Large Storage Objects) such as Documents/CSVs/Images/etc. for any kinds of needs. The application uses GCP Storage Bucket technology to save your photos in Bucket specified by `UUID` generated filename.
+
+
+* **Cloud Vision API**
+Cloud Vision API is Google Cloud's AI service powered by Machine Learning backed computations to perform different types of Machine Learning and Object Detections approaches to your applications. The application supports Vision API integration to perform a quick scan over your image and get some image attributes based on accuracy.
+
+
+* **Datastore/Firestore**
+This is a Google Cloud powered NoSQL Database for storing your documents under collections. The application uses Datastore to dump your Image details based on `id`, `uri` and `attributes` to Database for storing as records.
+
 
 #### How it works?
 The application uses RESTful architecture to upload or retrieve Photo from Cloud.
