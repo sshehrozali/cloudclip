@@ -4,7 +4,8 @@ Content-Type: multipart/form-data; boundary=WebAppBoundary
 --WebAppBoundary
 Content-Disposition: form-data; name="file"; filename="img.jpg"
 
-< ./img.jpg
+#INSERT YOUR IMAGE HERE
+#< ./img.jpg
 --WebAppBoundary--
 
 ###
