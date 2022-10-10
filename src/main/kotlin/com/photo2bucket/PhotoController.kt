@@ -16,7 +16,7 @@ class PhotoController(
     private val photoService: PhotoService
 ) {
     @GetMapping("/image/{id}")
-    fun get(@PathVariable id: String): ResponseEntity<Resource> {
+    fun retrieveAPhoto(@PathVariable id: String): ResponseEntity<Resource> {
         return photoService.retrievePhoto(id)
     }
 
