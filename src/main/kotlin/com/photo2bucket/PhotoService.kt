@@ -11,16 +11,16 @@ import org.springframework.web.multipart.MultipartFile
 import java.util.*
 
 @Service
-class PhotoService (
+class PhotoService(
     private val photoRepository: PhotoRepository,
     private val ctx: org.springframework.context.ApplicationContext,
     private val visionTemplate: CloudVisionTemplate
-        ) {
+) {
     // Bucket name
     private val bucket = "gs://magical-photos-bucket"
 
     // Method to retrieve Photo from Storage Bucket
-    fun retrievePhoto(id: String) : ResponseEntity<Resource> {
+    fun retrievePhoto(id: String): ResponseEntity<Resource> {
         val resource = ctx.getResource("/$bucket/$id")
         return if (resource.exists()) {
             ResponseEntity.ok(resource)
@@ -30,7 +30,7 @@ class PhotoService (
     }
 
     // Method to upload a Photo to Storage Bucket
-    fun uploadPhoto(file: MultipartFile) : Photo {
+    fun uploadPhoto(file: MultipartFile): Photo {
         val id = UUID.randomUUID().toString()    // Randomly generate Filename for photo
         val uri = "$bucket/$id"        // URI to access photo from bucket
         val gcs = ctx.getResource(uri) as WritableResource        // Write as writeable resource
