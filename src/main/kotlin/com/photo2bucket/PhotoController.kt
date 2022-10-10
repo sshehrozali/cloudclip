@@ -15,15 +15,9 @@ import java.util.*
 class PhotoController(
     private val photoService: PhotoService
 ) {
-    // Method to retrieve a Photo
     @GetMapping("/image/{id}")
     fun get(@PathVariable id: String): ResponseEntity<Resource> {
-        val resource = ctx.getResource("/$bucket/$id")
-        return if (resource.exists()) {
-            ResponseEntity.ok(resource)
-        } else {
-            ResponseEntity(HttpStatus.NOT_FOUND)
-        }
+        return photoService.retrievePhoto(id)
     }
 
     // Method to upload new Photo
