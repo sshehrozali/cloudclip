@@ -16,7 +16,7 @@ class PhotoController(
     }
 
     @PostMapping("/upload")
-    fun upload(@RequestParam("file") file: MultipartFile): Photo {
+    fun uploadAPhoto(@RequestParam("file") file: MultipartFile): Photo {
         return photoService.uploadPhoto(file)
     }
 }
